@@ -10,6 +10,7 @@ function App() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [finalResult, setFinalResult] = useState<Result | null>(null);
   const [scores, setScores] = useState<Record<string, number>>({});
+  const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
 
   const startQuiz = () => {
     setAnswers([]);
@@ -269,9 +270,48 @@ function App() {
         <p>© 2026 나랑 닮은 포켓몬 테스트. All rights reserved.</p>
         <p>포켓몬 데이터 및 이미지는 PokeAPI를 활용하였습니다.</p>
         <div className="footer-links" style={{ marginTop: '10px' }}>
-          <span style={{ cursor: 'pointer' }}>개인정보처리방침</span> | <span style={{ cursor: 'pointer' }}>이용약관</span>
+          <span style={{ cursor: 'pointer' }} onClick={() => setModalType('privacy')}>개인정보처리방침</span> | <span style={{ cursor: 'pointer' }} onClick={() => setModalType('terms')}>이용약관</span>
         </div>
       </footer>
+
+      {/* Modal for Privacy & Terms */}
+      {modalType && (
+        <div className="modal-overlay" onClick={() => setModalType(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setModalType(null)}>✕</button>
+            <div className="modal-title">
+              {modalType === 'privacy' ? '개인정보처리방침' : '이용약관'}
+            </div>
+            <div className="modal-body">
+              {modalType === 'privacy' ? (
+                <>
+                  <p>본 사이트("나랑 닮은 포켓몬 테스트")는 사용자의 개인정보를 중요하게 생각하며, "개인정보 보호법"에 따라 사용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보 처리방침을 수립·공개합니다.</p>
+                  <br />
+                  <p><strong>1. 개인정보의 수집 및 이용 목적</strong><br />본 사이트는 별도의 회원가입 없이 이용 가능하며, 서비스 제공을 위한 최소한의 데이터(성격 테스트 답변 등)만을 일시적으로 처리합니다. 어떠한 개인 식별 정보(이름, 연락처, 이메일 등)도 수집, 저장 또는 제3자에게 제공하지 않습니다.</p>
+                  <br />
+                  <p><strong>2. 개인정보의 보유 및 이용 기간</strong><br />테스트 진행 중 발생하는 모든 데이터는 사용자의 브라우저(클라이언트) 단에서만 처리되며, 서버에 저장되지 않고 페이지를 닫거나 새로고침하면 즉시 파기됩니다.</p>
+                  <br />
+                  <p><strong>3. 쿠키(Cookie) 및 웹 분석 도구의 사용</strong><br />본 사이트는 서비스 개선 및 트래픽 분석(예: Google Analytics), 그리고 광고 게재(Google AdSense)를 위해 쿠키를 사용할 수 있습니다. 사용자는 브라우저 설정을 통해 쿠키 저장을 거부할 수 있습니다.</p>
+                  <br />
+                  <p><strong>4. 문의처</strong><br />개인정보와 관련된 문의 사항은 사이트 관리자에게 문의해주시기 바랍니다.</p>
+                </>
+              ) : (
+                <>
+                  <p><strong>제 1 조 (목적)</strong><br />본 약관은 "나랑 닮은 포켓몬 테스트" (이하 "서비스")의 이용 조건 및 절차, 이용자와 사이트의 권리, 의무, 책임 사항을 규정함을 목적으로 합니다.</p>
+                  <br />
+                  <p><strong>제 2 조 (서비스의 제공)</strong><br />1. 본 서비스는 무료로 제공되는 심리/성향 테스트 웹 애플리케이션입니다.<br />2. 서비스의 내용은 사이트의 정책에 따라 변경, 중단될 수 있습니다.</p>
+                  <br />
+                  <p><strong>제 3 조 (저작권 및 면책 조항)</strong><br />1. 본 사이트에서 사용된 포켓몬 관련 이미지, 이름, 데이터 등의 지식재산권은 원저작권자(Nintendo, Creatures, GAME FREAK 등)에게 있습니다. 본 사이트는 영리 목적이 아닌 팬 메이드 성격의 테스트를 제공하며, PokeAPI를 통해 데이터를 참조합니다.<br />2. 본 테스트의 결과는 과학적, 의학적 근거가 없는 단순한 흥미 위주의 콘텐츠이며, 사이트는 테스트 결과로 인해 발생하는 어떠한 문제에 대해서도 법적 책임을 지지 않습니다.</p>
+                  <br />
+                  <p><strong>제 4 조 (이용자의 의무)</strong><br />이용자는 본 서비스를 이용할 때 불법적인 목적이나 부정한 방법으로 서비스를 이용해서는 안 되며, 사이트의 정상적인 운영을 방해하는 행위를 해서는 안 됩니다.</p>
+                  <br />
+                  <p><strong>제 5 조 (약관의 변경)</strong><br />본 약관은 법령의 변경이나 서비스 정책에 따라 변경될 수 있으며, 변경된 약관은 사이트 내에 공지함으로써 효력이 발생합니다.</p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
