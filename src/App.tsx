@@ -92,64 +92,55 @@ function App() {
 
   return (
     <div className="page">
+      {/* Header */}
+      <header className="app-header">
+        <span className="material-symbols-outlined icon-btn">menu</span>
+        <h2>Pokemon Quiz</h2>
+        <span className="material-symbols-outlined icon-btn">account_circle</span>
+      </header>
+
       {screen === 'START' && (
         <div className="screen active">
           <div className="start-wrap">
-            <img src="/src/assets/pokeball.svg" className="pokeball-anim" alt="Pokeball" />
+            <div className="hero-box">
+              <img src="/src/assets/pokeball.svg" className="pokeball-anim hero-icon" alt="Pokeball" />
+              <div className="hero-overlay"></div>
+              <div className="hero-tag-wrap">
+                <span className="start-tag">Trending Quiz</span>
+              </div>
+            </div>
 
-            <div className="start-tag">포켓몬 성격 테스트</div>
             <h1>
-              나랑 닮은
-              <br />
-              포켓몬은 <span className="highlight">누구?</span>
+              나랑 닮은<br />
+              <span className="highlight">포켓몬</span>은 누구?
             </h1>
             <p className="start-desc">
-              7가지 질문으로 당신과 가장 닮은
-              <br />
-              포켓몬을 찾아드릴게요 ✨
+              단 7개의 재미있는 질문으로 당신의 내면의 포켓몬과 배틀 스타일을 찾아보세요!
             </p>
 
-            <div className="preview-strip">
-              <img
-                className="preview-mon"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                style={{ '--dur': '3s', '--delay': '0s' } as React.CSSProperties}
-              />
-              <img
-                className="preview-mon"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
-                style={{ '--dur': '3.5s', '--delay': '0.3s' } as React.CSSProperties}
-              />
-              <img
-                className="preview-mon"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
-                style={{ '--dur': '2.8s', '--delay': '0.6s' } as React.CSSProperties}
-              />
-              <img
-                className="preview-mon"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
-                style={{ '--dur': '3.2s', '--delay': '0.1s' } as React.CSSProperties}
-              />
-              <img
-                className="preview-mon"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png"
-                style={{ '--dur': '3.8s', '--delay': '0.4s' } as React.CSSProperties}
-              />
+            <div className="meta-stats">
+              <div className="stat-box">
+                <span className="material-symbols-outlined">timer</span>
+                <span>2 Min</span>
+              </div>
+              <div className="stat-box">
+                <span className="material-symbols-outlined">quiz</span>
+                <span>7 Qs</span>
+              </div>
+              <div className="stat-box">
+                <span className="material-symbols-outlined">group</span>
+                <span>10k+</span>
+              </div>
             </div>
 
             <button className="start-btn" onClick={startQuiz}>
-              내 포켓몬 찾기 →
+              <span>Start Quiz</span>
+              <span className="material-symbols-outlined">play_arrow</span>
             </button>
 
             <div className="start-info">
               <h3>성격 테스트란?</h3>
               <p>본 테스트는 일상적인 선택과 성향을 바탕으로 포켓몬 세계의 다양한 캐릭터들과 매칭해 드립니다. 당신의 잠재된 성격은 불꽃처럼 뜨거운지, 혹은 물처럼 유연한지 확인해보세요!</p>
-              <h3>테스트 특징</h3>
-              <ul>
-                <li>✨ 간단한 7가지 심리 질문</li>
-                <li>🎨 귀여운 공식 포켓몬 아트워크</li>
-                <li>🎉 결과에 따른 맞춤 성격 분석</li>
-              </ul>
             </div>
           </div>
         </div>
