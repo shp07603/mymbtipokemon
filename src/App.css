@@ -1,42 +1,377 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg: #fdf8f0;
+  --white: #ffffff;
+  --dark: #2d2416;
+  --mid: #8a7560;
+  --light: #f0e8d8;
+  --border: #e8dcc8;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+
+  /* type colors */
+  --fire: #ff6b35;
+  --water: #4fc3f7;
+  --electric: #ffd600;
+  --grass: #66bb6a;
+  --psychic: #ec407a;
+  --ghost: #7e57c2;
+  --normal: #bfae95;
+  --dragon: #5c6bc0;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* subtle dot pattern */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events:none; z-index:0;
+}
+
+.page {
+  position:relative; z-index:1;
+  max-width:540px; margin:0 auto;
+  padding:0 20px 80px;
+}
+
+/* ── Screens ── */
+.screen { display:none; }
+.screen.active { display:block; animation:slideUp .45s cubic-bezier(.34,1.2,.64,1); }
+ @keyframes slideUp {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ── Start ── */
+.start-wrap { padding-top:48px; text-align:center; }
+
+.pokeball-anim {
+  width:88px; height:88px;
+  margin:0 auto 28px;
+  animation:wobble 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+}
+ @keyframes wobble {
+  0%,100% { transform:rotate(-8deg) scale(1); }
+  50% { transform:rotate(8deg) scale(1.05); }
+}
+
+.start-tag {
+  display:inline-block;
+  font-size:12px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--mid); background:var(--light);
+  padding:6px 16px; border-radius:100px;
+  border:1px solid var(--border);
+  margin-bottom:20px;
+}
+
+h1 {
+  font-family:'Gaegu', cursive;
+  font-size:clamp(36px,8vw,52px);
+  font-weight:700; line-height:1.15;
+  color:var(--dark); margin-bottom:16px;
+}
+h1 .highlight {
+  position:relative; display:inline-block;
+  color:#ff6b35;
+}
+h1 .highlight::after {
+  content:'';
+  position:absolute; left:0; bottom:-4px; right:0;
+  height:4px; border-radius:100px;
+  background:linear-gradient(90deg,#ff6b35,#ffd600);
+}
+
+.start-desc {
+  font-size:16px; color:var(--mid);
+  line-height:1.8; font-weight:300;
+  margin-bottom:36px;
+}
+
+/* Preview pokemon strip */
+.preview-strip {
+  display:flex; gap:12px; justify-content:center;
+  margin-bottom:36px; overflow:hidden;
+}
+.preview-mon {
+  width:60px; height:60px; object-fit:contain;
+  opacity:.7; transition:all .3s;
+  animation:floatMon var(--dur,3s) ease-in-out infinite;
+  animation-delay:var(--delay,0s);
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+ @keyframes floatMon {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
+}
+
+.start-btn {
+  width:100%; padding:20px;
+  background:var(--dark); color:var(--white);
+  border:none; border-radius:18px;
+  font-family:'Gaegu', cursive; font-size:22px;
+  cursor:pointer; transition:all .2s;
+  box-shadow:0 6px 24px rgba(45,36,22,0.25);
+  letter-spacing:1px;
+}
+.start-btn:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(45,36,22,0.3);
+}
+.start-btn:active { transform:scale(0.98); }
+
+/* ── Quiz ── */
+.quiz-header {
+  padding:32px 0 0;
+  display:flex; flex-direction:column; gap:12px;
+  margin-bottom:28px;
+}
+.quiz-step {
+  font-size:12px; color:var(--mid);
+  font-weight:600; letter-spacing:2px; text-transform:uppercase;
+}
+.progress-track {
+  height:6px; background:var(--light);
+  border-radius:100px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.progress-fill {
+  height:100%; border-radius:100px;
+  background:linear-gradient(90deg, #ff6b35, #ffd600);
+  transition:width .5s cubic-bezier(.34,1.1,.64,1);
+  box-shadow:0 0 8px rgba(255,107,53,0.4);
+}
+
+/* Question card */
+.q-card {
+  background:var(--white); border-radius:24px;
+  padding:32px 28px;
+  box-shadow:var(--shadow-lg);
+  border:1px solid var(--border);
+  margin-bottom:16px;
+  animation:cardIn .4s cubic-bezier(.34,1.1,.64,1);
+}
+ @keyframes cardIn {
+  from { opacity:0; transform:scale(0.95) translateY(12px); }
+  to { opacity:1; transform:scale(1) translateY(0); }
+}
+
+.q-emoji { font-size:40px; margin-bottom:16px; display:block; text-align: center; }
+.q-text {
+  font-family:'Gaegu', cursive;
+  font-size:clamp(20px,5vw,26px);
+  font-weight:700; line-height:1.4;
+  color:var(--dark); margin-bottom:24px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Answer options */
+.options { display:flex; flex-direction:column; gap:10px; }
+.option-btn {
+  width:100%; padding:16px 20px;
+  background:var(--bg); border:2px solid var(--border);
+  border-radius:14px; color:var(--dark);
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:15px; font-weight:400;
+  cursor:pointer; transition:all .18s;
+  text-align:left; display:flex; align-items:center; gap:12px;
+  line-height:1.5;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.option-btn:hover {
+  border-color:var(--dark);
+  background:var(--white);
+  transform:translateX(4px);
+  box-shadow:var(--shadow);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.option-btn.selected {
+  border-color:var(--dark);
+  background:var(--dark); color:var(--white);
+  transform:translateX(4px);
+  box-shadow:var(--shadow);
+}
+.option-icon {
+  font-size:22px; flex-shrink:0;
+  width:36px; height:36px;
+  background:rgba(255,255,255,0.15);
+  border-radius:10px; display:flex;
+  align-items:center; justify-content:center;
+}
+.option-btn:not(.selected) .option-icon {
+  background:var(--light);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ── Loading ── */
+.loading-wrap {
+  text-align:center; padding:80px 0;
+}
+.loading-ball {
+  width:72px; height:72px; margin:0 auto 24px;
+  animation:spinBall 1s linear infinite;
+}
+ @keyframes spinBall { to { transform:rotate(360deg); } }
+.loading-text {
+  font-family:'Gaegu', cursive;
+  font-size:22px; color:var(--dark); margin-bottom:8px;
+}
+.loading-sub { font-size:14px; color:var(--mid); }
+
+/* ── Result ── */
+.result-wrap { padding-top:36px; text-align:center; }
+
+.result-eyebrow {
+  font-size:13px; color:var(--mid);
+  font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:8px;
+}
+.result-title {
+  font-family:'Gaegu', cursive;
+  font-size:clamp(28px,7vw,40px);
+  font-weight:700; color:var(--dark);
+  margin-bottom:28px; line-height:1.3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Pokemon result card */
+.result-card {
+  background:var(--white); border-radius:28px;
+  padding:36px 28px;
+  box-shadow:var(--shadow-lg);
+  border:1px solid var(--border);
+  margin-bottom:20px;
+  position:relative; overflow:hidden;
+}
+.result-card::before {
+  content:'';
+  position:absolute; top:-60px; right:-60px;
+  width:200px; height:200px; border-radius:50%;
+  background:var(--type-color, #ff6b35);
+  opacity:.08;
+}
+.result-card::after {
+  content:'';
+  position:absolute; bottom:-40px; left:-40px;
+  width:140px; height:140px; border-radius:50%;
+  background:var(--type-color, #ff6b35);
+  opacity:.05;
 }
 
-.card {
-  padding: 2em;
+.result-mon-wrap {
+  position:relative; z-index:1;
+  width:180px; height:180px; margin:0 auto 20px;
+}
+.result-mon {
+  width:100%; height:100%; object-fit:contain;
+  animation:resultBounce .6s cubic-bezier(.34,1.6,.64,1) forwards;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+}
+ @keyframes resultBounce {
+  0% { transform:scale(0) rotate(-10deg); opacity:0; }
+  100% { transform:scale(1) rotate(0deg); opacity:1; }
 }
 
-.read-the-docs {
-  color: #888;
+.result-type-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:700;
+  padding:5px 14px; border-radius:100px;
+  background:var(--type-color, #ff6b35);
+  color:white; margin-bottom:14px;
+  letter-spacing:1px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.result-mon-name {
+  font-family:'Gaegu', cursive;
+  font-size:36px; font-weight:700;
+  color:var(--dark); margin-bottom:4px;
+}
+.result-mon-en {
+  font-size:13px; color:var(--mid);
+  margin-bottom:20px; letter-spacing:1px;
+}
+
+.result-divider {
+  height:1px; background:var(--border);
+  margin:20px 0;
+}
+
+.result-desc {
+  font-size:15px; color:var(--mid);
+  line-height:1.9; font-weight:300;
+  text-align:left; position:relative; z-index:1;
+}
+
+/* Traits */
+.traits {
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:16px; justify-content:flex-start;
+  position:relative; z-index:1;
+}
+.trait {
+  font-size:12px; font-weight:600;
+  padding:5px 12px; border-radius:100px;
+  background:var(--light); color:var(--dark);
+  border:1px solid var(--border);
+}
+
+/* Share / retry */
+.share-btn {
+  width:100%; padding:18px;
+  background:linear-gradient(135deg, #ff6b35, #ff9a3c);
+  border:none; border-radius:16px; color:white;
+  font-family:'Gaegu', cursive; font-size:20px;
+  cursor:pointer; transition:all .2s;
+  box-shadow:0 6px 24px rgba(255,107,53,0.35);
+  margin-bottom:12px; letter-spacing:1px;
+}
+.share-btn:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(255,107,53,0.4); }
+
+.retry-btn {
+  width:100%; padding:16px;
+  background:transparent; border:2px solid var(--border);
+  border-radius:16px; color:var(--mid);
+  font-family:'Noto Sans KR', sans-serif; font-size:15px;
+  cursor:pointer; transition:all .2s;
+}
+.retry-btn:hover { border-color:var(--dark); color:var(--dark); }
+
+/* Confetti */
+.confetti-piece {
+  position:fixed; top:-20px; pointer-events:none;
+  width:10px; height:10px; border-radius:2px;
+  animation:confettiFall linear forwards;
+  z-index:999;
+}
+ @keyframes confettiFall {
+  to { transform:translateY(110vh) rotate(720deg); opacity:0; }
+}
+
+/* Score badges on result */
+.score-row {
+  display:flex; gap:10px; margin-bottom:20px;
+}
+.score-chip {
+  flex:1; background:var(--light); border-radius:12px;
+  padding:12px 8px; text-align:center;
+  border:1px solid var(--border);
+}
+.score-chip-val {
+  font-family:'Gaegu', cursive;
+  font-size:22px; display:block; color:var(--dark);
+}
+.score-chip-label { font-size:11px; color:var(--mid); }
+
+ @media(max-width:400px) {
+  .q-card { padding:24px 20px; }
+  .option-btn { font-size:14px; padding:14px 16px; }
 }
