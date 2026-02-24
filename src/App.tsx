@@ -95,13 +95,7 @@ function App() {
       {screen === 'START' && (
         <div className="screen active">
           <div className="start-wrap">
-            <svg className="pokeball-anim" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="48" fill="#ff3d3d" stroke="#2d2416" stroke-width="3" />
-              <rect x="2" y="47" width="96" height="6" fill="#2d2416" />
-              <circle cx="50" cy="50" r="14" fill="white" stroke="#2d2416" stroke-width="3" />
-              <circle cx="50" cy="50" r="7" fill="#f5f5f5" stroke="#2d2416" stroke-width="2" />
-              <path d="M 2 50 A 48 48 0 0 1 98 50" fill="#f0f0f0" stroke="none" />
-            </svg>
+            <img src="/src/assets/pokeball.svg" className="pokeball-anim" alt="Pokeball" />
 
             <div className="start-tag">포켓몬 성격 테스트</div>
             <h1>
@@ -196,13 +190,7 @@ function App() {
       {screen === 'LOADING' && (
         <div className="screen active">
           <div className="loading-wrap">
-            <svg className="loading-ball" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="48" fill="#ff3d3d" stroke="#2d2416" stroke-width="3" />
-              <rect x="2" y="47" width="96" height="6" fill="#2d2416" />
-              <circle cx="50" cy="50" r="14" fill="white" stroke="#2d2416" stroke-width="3" />
-              <circle cx="50" cy="50" r="7" fill="#f5f5f5" stroke="#2d2416" stroke-width="2" />
-              <path d="M 2 50 A 48 48 0 0 1 98 50" fill="#f0f0f0" />
-            </svg>
+            <img src="/src/assets/pokeball.svg" className="loading-ball" alt="Loading Pokeball" />
             <div className="loading-text">포켓몬 탐색 중...</div>
             <div className="loading-sub">당신과 닮은 포켓몬을 찾고 있어요 🔍</div>
           </div>
