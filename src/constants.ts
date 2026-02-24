@@ -1,7 +1,9 @@
 export interface Option {
   icon: string;
   text: string;
+  subText?: string;
   type: string;
+  color?: string;
 }
 
 export interface Question {
@@ -24,72 +26,72 @@ export interface Result {
 export const QUESTIONS: Question[] = [
   {
     emoji: '🌅',
-    text: '주말 아침, 눈을 떴을 때 드는 첫 생각은?',
+    text: '주말 아침, 눈을 떴을 때 당신의 모습은?',
     options: [
-      { icon: '🔥', text: '오늘 뭐 할지 이미 계획 세워뒀지!', type: 'fire' },
-      { icon: '💤', text: '조금만 더... 5분만 더 자야지', type: 'normal' },
-      { icon: '🌿', text: '창문 열고 바깥 공기나 마셔야겠다', type: 'grass' },
-      { icon: '⚡', text: '벌써 할 게 너무 많아서 두근두근', type: 'electric' },
+      { icon: 'event_available', text: '계획 세우기', subText: '이미 할 일 정해둠', type: 'fire', color: 'bg-orange-100 text-orange-500' },
+      { icon: 'bed', text: '5분만 더...', subText: '잠만보처럼 휴식', type: 'normal', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'hiking', text: '바깥 공기', subText: '풀숲을 산책하기', type: 'grass', color: 'bg-green-100 text-green-500' },
+      { icon: 'bolt', text: '두근두근', subText: '에너지 풀 충전!', type: 'electric', color: 'bg-yellow-100 text-yellow-500' },
     ]
   },
   {
     emoji: '🧃',
-    text: '친구들 사이에서 나는 보통 어떤 사람인가요?',
+    text: '친구들 사이에서 당신은 어떤 존재인가요?',
     options: [
-      { icon: '😄', text: '분위기 메이커! 웃음을 책임진다', type: 'electric' },
-      { icon: '🤗', text: '다들 고민을 털어놓는 든든한 친구', type: 'water' },
-      { icon: '🎯', text: '목표가 뚜렷하고 추진력 있는 리더', type: 'fire' },
-      { icon: '🌙', text: '조용하지만 관찰력 있는 미스테리한 존재', type: 'ghost' },
+      { icon: 'celebration', text: '분위기 메이커', subText: '웃음을 책임진다', type: 'electric', color: 'bg-yellow-100 text-yellow-500' },
+      { icon: 'diversity_3', text: '든든한 친구', subText: '고민 해결사', type: 'water', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'leaderboard', text: '추진력 대장', subText: '나를 따르라!', type: 'fire', color: 'bg-red-100 text-red-500' },
+      { icon: 'visibility_off', text: '미스테리', subText: '조용한 관찰자', type: 'ghost', color: 'bg-purple-100 text-purple-500' },
     ]
   },
   {
     emoji: '💥',
-    text: '갑자기 엄청 스트레스받는 일이 생겼다! 나는?',
+    text: '갑자기 스트레스 받는 일이 생겼다면?',
     options: [
-      { icon: '🏃', text: '일단 밖으로 나가서 몸을 움직인다', type: 'fire' },
-      { icon: '🎵', text: '혼자 방에서 음악 들으며 감정 정리', type: 'ghost' },
-      { icon: '☕', text: '친구한테 전화해서 하소연한다', type: 'water' },
-      { icon: '📚', text: '원인을 분석하고 해결책부터 찾는다', type: 'psychic' },
+      { icon: 'directions_run', text: '몸 움직이기', subText: '땀 흘리며 해소', type: 'fire', color: 'bg-red-100 text-red-500' },
+      { icon: 'headset', text: '혼자만의 시간', subText: '음악으로 정화', type: 'ghost', color: 'bg-purple-100 text-purple-500' },
+      { icon: 'forum', text: '수다 떨기', subText: '친구에게 하소연', type: 'water', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'psychology', text: '원인 분석', subText: '해결책부터 찾기', type: 'psychic', color: 'bg-pink-100 text-pink-500' },
     ]
   },
   {
     emoji: '🌤️',
-    text: '가장 좋아하는 날씨는 뭔가요?',
+    text: '가장 좋아하는 날씨나 분위기는?',
     options: [
-      { icon: '☀️', text: '화창하고 뜨거운 여름 햇살', type: 'fire' },
-      { icon: '🌧️', text: '창밖에 빗소리 들으며 집에 있는 날', type: 'water' },
-      { icon: '⛈️', text: '번개치고 천둥 울리는 드라마틱한 날', type: 'electric' },
-      { icon: '🌫️', text: '안개 낀 쌀쌀한 가을 아침', type: 'ghost' },
+      { icon: 'wb_sunny', text: '뜨거운 햇살', subText: '열정적인 여름', type: 'fire', color: 'bg-orange-100 text-orange-500' },
+      { icon: 'water_drop', text: '비 오는 날', subText: '차분한 빗소리', type: 'water', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'thunderstorm', text: '천둥 번개', subText: '짜릿한 에너지', type: 'electric', color: 'bg-yellow-100 text-yellow-500' },
+      { icon: 'cloudy_snowing', text: '쌀쌀한 아침', subText: '미스테리한 안개', type: 'ghost', color: 'bg-slate-100 text-slate-500' },
     ]
   },
   {
     emoji: '🍕',
-    text: '친구들이랑 뭐 먹을지 정할 때 나는?',
+    text: '메뉴를 결정할 때 당신의 스타일은?',
     options: [
-      { icon: '🙋', text: '내가 먹고 싶은 거 바로 말한다', type: 'fire' },
-      { icon: '🤷', text: '아무거나 괜찮아~ 다 맛있어', type: 'normal' },
-      { icon: '📊', text: '모두의 의견을 취합해서 합리적으로 결정', type: 'psychic' },
-      { icon: '🥗', text: '건강한 거 먹자고 슬쩍 유도한다', type: 'grass' },
+      { icon: 'campaign', text: '강력 추천', subText: '먹고 싶은 거 어필', type: 'fire', color: 'bg-red-100 text-red-500' },
+      { icon: 'check_circle', text: '아무거나 OK', subText: '다 맛있어~', type: 'normal', color: 'bg-slate-100 text-slate-500' },
+      { icon: 'query_stats', text: '합리적 선택', subText: '리뷰와 평점 확인', type: 'psychic', color: 'bg-pink-100 text-pink-500' },
+      { icon: 'eco', text: '건강 우선', subText: '프레시한 한 끼', type: 'grass', color: 'bg-green-100 text-green-500' },
     ]
   },
   {
     emoji: '🎮',
-    text: '게임을 한다면 어떤 스타일?',
+    text: '게임이나 승부에서 당신의 전략은?',
     options: [
-      { icon: '⚔️', text: '무조건 공격! 화력으로 밀어붙인다', type: 'fire' },
-      { icon: '🏰', text: '방어 위주, 절대 무너지지 않는 철벽', type: 'water' },
-      { icon: '🧠', text: '전략 세우고 상대를 심리적으로 압박', type: 'psychic' },
-      { icon: '👻', text: '게릴라 전술, 나타났다 사라졌다', type: 'ghost' },
+      { icon: 'swords', text: '무조건 공격', subText: '화끈한 화력전', type: 'fire', color: 'bg-red-100 text-red-500' },
+      { icon: 'shield', text: '철벽 방어', subText: '무너지지 않는 벽', type: 'water', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'lightbulb', text: '지능적 플레이', subText: '상대 심리 이용', type: 'psychic', color: 'bg-pink-100 text-pink-500' },
+      { icon: 'teleport', text: '변칙 공격', subText: '게릴라 전술', type: 'ghost', color: 'bg-purple-100 text-purple-500' },
     ]
   },
   {
     emoji: '✨',
-    text: '마지막! 나를 가장 잘 표현하는 단어는?',
+    text: '당신을 가장 잘 표현하는 키워드는?',
     options: [
-      { icon: '🌋', text: '열정적인', type: 'fire' },
-      { icon: '🌊', text: '포용력있는', type: 'water' },
-      { icon: '⚡', text: '에너지넘치는', type: 'electric' },
-      { icon: '🔮', text: '신비로운', type: 'psychic' },
+      { icon: 'volcano', text: '열정적인', subText: '뜨거운 심장', type: 'fire', color: 'bg-orange-100 text-orange-500' },
+      { icon: 'waves', text: '포용력 있는', subText: '넓은 바다처럼', type: 'water', color: 'bg-blue-100 text-blue-500' },
+      { icon: 'electric_bolt', text: '에너지 넘치는', subText: '짜릿한 매력', type: 'electric', color: 'bg-yellow-100 text-yellow-500' },
+      { icon: 'auto_awesome', text: '신비로운', subText: '예측 불가능한', type: 'psychic', color: 'bg-pink-100 text-pink-500' },
     ]
   },
 ];
