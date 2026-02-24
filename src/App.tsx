@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { QUESTIONS, RESULTS, type Result } from './constants';
 import pokeball from './assets/pokeball.svg';
 
-type Screen = 'START' | 'QUIZ' | 'LOADING' | 'RESULT';
+type Screen = 'START' | 'QUIZ' | 'LOADING' | 'RESULT' | 'HISTORY';
+
+interface HistoryItem {
+  date: string;
+  result: Result;
+}
 
 function App() {
   const [screen, setScreen] = useState<Screen>('START');
@@ -12,6 +17,33 @@ function App() {
   const [finalResult, setFinalResult] = useState<Result | null>(null);
   const [scores, setScores] = useState<Record<string, number>>({});
   const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
+
+  // Drawers
+  const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
+  const [isRightProfileOpen, setIsRightProfileOpen] = useState(false);
+
+  // History
+  const [historyList, setHistoryList] = useState<HistoryItem[]>([]);
+
+  // Load history on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('poke_mbti_history');
+    if (saved) {
+      try {
+        setHistoryList(JSON.parse(saved));
+      } catch (e) {}
+    }
+  }, []);
+
+  const saveToHistory = (res: Result) => {
+    const newItem: HistoryItem = {
+      date: new Date().toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+      result: res
+    };
+    const updated = [newItem, ...historyList].slice(0, 10); // Keep last 10
+    setHistoryList(updated);
+    localStorage.setItem('poke_mbti_history', JSON.stringify(updated));
+  };
 
   const startQuiz = () => {
     setAnswers([]);
@@ -53,6 +85,7 @@ function App() {
     await new Promise((r) => setTimeout(r, 2000));
 
     setFinalResult(result);
+    saveToHistory(result);
     setScreen('RESULT');
     launchConfetti(result.typeColor);
   };
@@ -90,23 +123,40 @@ function App() {
     }
   };
 
+  // Marquee Pokemon IDs
+  const marqueePokemons = [1, 4, 7, 25, 133, 143, 94, 151, 448, 700, 197, 445];
+
   return (
     <div className="app-container">
       <div className="app-content">
         {/* Header */}
         <header className="app-header">
-          <span className="material-symbols-outlined icon-btn" onClick={() => screen !== 'START' && setScreen('START')}>
-            {screen === 'START' ? 'menu' : 'arrow_back'}
-          </span>
+          {screen === 'START' ? (
+            <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)}>menu</span>
+          ) : (
+            <span className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')}>arrow_back</span>
+          )}
           <h2 className="header-title">Pokemon Quiz</h2>
-          <span className="material-symbols-outlined icon-btn">account_circle</span>
+          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)}>account_circle</span>
         </header>
 
         {screen === 'START' && (
           <div className="screen active">
             <div className="start-wrap">
               <div className="hero-box">
-                <img src={pokeball} className="pokeball-anim hero-icon" alt="Pokeball" />
+                {/* Marquee Animation */}
+                <div className="marquee-container">
+                  <div className="marquee-content">
+                    {marqueePokemons.concat(marqueePokemons).map((id, index) => (
+                      <img 
+                        key={index}
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} 
+                        alt="pokemon" 
+                      />
+                    ))}
+                  </div>
+                </div>
+
                 <div className="hero-overlay"></div>
                 <div className="hero-tag-wrap">
                   <span className="start-tag">Trending Quiz</span>
@@ -144,8 +194,8 @@ function App() {
               </div>
 
               <div className="start-info">
-                <h3>성격 테스트란?</h3>
-                <p>본 테스트는 일상적인 선택과 성향을 바탕으로 포켓몬 세계의 다양한 캐릭터들과 매칭해 드립니다.</p>
+                <h3>내 안의 포켓몬을 깨워라! 🌟</h3>
+                <p>본 테스트는 당신의 일상적인 선택과 성향을 바탕으로 포켓몬 세계의 다양한 캐릭터들과 매칭해 드립니다. 재미로 보는 심리테스트, 지금 바로 시작해보세요!</p>
               </div>
             </div>
           </div>
@@ -262,17 +312,48 @@ function App() {
           </div>
         )}
 
+        {screen === 'HISTORY' && (
+          <div className="screen active">
+            <h1 className="main-title" style={{marginTop: '20px'}}>나의 기록</h1>
+            <p className="start-desc">이전에 테스트했던 결과들을 모아보세요.</p>
+            
+            {historyList.length === 0 ? (
+              <div style={{textAlign: 'center', marginTop: '40px', color: 'var(--slate-400)'}}>
+                <span className="material-symbols-outlined" style={{fontSize: '48px', marginBottom: '16px'}}>history</span>
+                <p>아직 테스트 기록이 없습니다.</p>
+              </div>
+            ) : (
+              <div className="history-list">
+                {historyList.map((item, i) => (
+                  <div key={i} className="history-item">
+                    <img 
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.result.id}.png`} 
+                      alt={item.result.nameKo} 
+                      className="history-mon"
+                    />
+                    <div className="history-info">
+                      <p className="history-date">{item.date}</p>
+                      <p className="history-name">{item.result.nameKo}</p>
+                      <span className="history-type" style={{background: item.result.typeColor}}>{item.result.type}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Bottom Nav */}
         <nav className="bottom-nav">
           <a className={`nav-item ${screen === 'START' ? 'active' : ''}`} onClick={() => setScreen('START')}>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>home</span>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'START' ? "'FILL' 1" : "'FILL' 0" }}>home</span>
             <span className="nav-label">Home</span>
           </a>
-          <a className="nav-item">
-            <span className="material-symbols-outlined">emoji_events</span>
-            <span className="nav-label">Leaderboard</span>
+          <a className={`nav-item ${screen === 'HISTORY' ? 'active' : ''}`} onClick={() => setScreen('HISTORY')}>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'HISTORY' ? "'FILL' 1" : "'FILL' 0" }}>history</span>
+            <span className="nav-label">History</span>
           </a>
-          <a className="nav-item">
+          <a className="nav-item" onClick={() => setIsRightProfileOpen(true)}>
             <span className="material-symbols-outlined">person</span>
             <span className="nav-label">Profile</span>
           </a>
@@ -280,13 +361,13 @@ function App() {
 
         <footer className="footer">
           <div className="footer-links">
-            <span onClick={() => setModalType('privacy')}>개인정보처리방침</span> | <span onClick={() => setModalType('terms')}>이용약관</span>
+            <button className="text-btn" onClick={() => setModalType('privacy')}>개인정보처리방침</button> | <button className="text-btn" onClick={() => setModalType('terms')}>이용약관</button>
           </div>
           <p className="copyright">© 2026 Pokemon Quiz. All rights reserved.</p>
         </footer>
       </div>
 
-      {/* Modals */}
+      {/* Modals for Privacy & Terms */}
       {modalType && (
         <div className="modal-overlay" onClick={() => setModalType(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -294,14 +375,66 @@ function App() {
             <h2 className="modal-title">{modalType === 'privacy' ? '개인정보처리방침' : '이용약관'}</h2>
             <div className="modal-body">
               {modalType === 'privacy' ? (
-                <p>개인정보 처리방침 내용... (생략)</p>
+                <>
+                  <p>본 사이트는 사용자의 개인정보를 중요하게 생각하며, 최소한의 데이터만을 일시적으로 처리합니다.</p>
+                  <p>1. 어떠한 개인 식별 정보도 서버에 수집, 저장하지 않습니다.</p>
+                  <p>2. 테스트 결과(히스토리)는 귀하의 기기(브라우저) 내부에만 저장됩니다.</p>
+                  <p>3. 트래픽 분석(Google Analytics) 및 광고 게재(Google AdSense)를 위해 쿠키를 사용할 수 있습니다.</p>
+                </>
               ) : (
-                <p>이용약관 내용... (생략)</p>
+                <>
+                  <p><strong>제 1 조 (목적)</strong><br />본 서비스는 무료로 제공되는 심리/성향 테스트 웹 애플리케이션입니다.</p>
+                  <p><strong>제 2 조 (저작권 및 면책 조항)</strong><br />본 사이트에서 사용된 포켓몬 관련 이미지, 이름, 데이터 등의 지식재산권은 원저작권자에게 있습니다. 본 테스트의 결과는 과학적 근거가 없으며 오직 흥미 위주의 콘텐츠입니다.</p>
+                </>
               )}
             </div>
           </div>
         </div>
       )}
+
+      {/* Left Menu Drawer */}
+      {isLeftMenuOpen && (
+        <div className="drawer-overlay" onClick={() => setIsLeftMenuOpen(false)}></div>
+      )}
+      <div className={`drawer drawer-left ${isLeftMenuOpen ? 'open' : ''}`}>
+        <div className="drawer-header">
+          <h2>Menu</h2>
+          <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(false)}>close</span>
+        </div>
+        <div className="drawer-menu">
+          <div className="drawer-menu-item" onClick={() => { setScreen('START'); setIsLeftMenuOpen(false); }}>
+            <span className="material-symbols-outlined">home</span> 홈 화면
+          </div>
+          <div className="drawer-menu-item" onClick={() => { setScreen('HISTORY'); setIsLeftMenuOpen(false); }}>
+            <span className="material-symbols-outlined">history</span> 나의 기록
+          </div>
+          <div className="drawer-menu-item" onClick={() => { setIsLeftMenuOpen(false); setModalType('privacy'); }}>
+            <span className="material-symbols-outlined">policy</span> 개인정보처리방침
+          </div>
+        </div>
+      </div>
+
+      {/* Right Profile Drawer */}
+      {isRightProfileOpen && (
+        <div className="drawer-overlay" onClick={() => setIsRightProfileOpen(false)}></div>
+      )}
+      <div className={`drawer drawer-right ${isRightProfileOpen ? 'open' : ''}`}>
+        <div className="drawer-header">
+          <h2>Profile Login</h2>
+          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(false)}>close</span>
+        </div>
+        <div className="login-form">
+          <p style={{fontSize: '14px', color: 'var(--slate-600)', marginBottom: '8px'}}>기록을 영구적으로 저장하려면 로그인하세요.</p>
+          <input type="email" placeholder="이메일 주소" className="login-input" />
+          <input type="password" placeholder="비밀번호" className="login-input" />
+          <button className="login-btn" onClick={() => { alert('준비중인 기능입니다.'); setIsRightProfileOpen(false); }}>로그인</button>
+          
+          <div style={{textAlign: 'center', marginTop: '16px', fontSize: '14px'}}>
+            <a href="#" style={{color: 'var(--primary)', textDecoration: 'underline'}}>계정이 없으신가요?</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
