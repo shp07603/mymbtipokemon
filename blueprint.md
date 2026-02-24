@@ -15,6 +15,7 @@
 - **Styling:** CSS (Modern CSS variables, Flexbox, Grid)
 - **Icons/Images:** PokeAPI (Official Artwork)
 - **Typography:** Google Fonts (Gaegu, Noto Sans KR)
+- **Analytics:** Google Analytics (G-D1XH9D65KC)
 
 ## 디자인 가이드
 - **Color Palette:**
