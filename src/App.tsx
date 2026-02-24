@@ -145,6 +145,17 @@ function App() {
             <button className="start-btn" onClick={startQuiz}>
               내 포켓몬 찾기 →
             </button>
+
+            <div className="start-info">
+              <h3>성격 테스트란?</h3>
+              <p>본 테스트는 일상적인 선택과 성향을 바탕으로 포켓몬 세계의 다양한 캐릭터들과 매칭해 드립니다. 당신의 잠재된 성격은 불꽃처럼 뜨거운지, 혹은 물처럼 유연한지 확인해보세요!</p>
+              <h3>테스트 특징</h3>
+              <ul>
+                <li>✨ 간단한 7가지 심리 질문</li>
+                <li>🎨 귀여운 공식 포켓몬 아트워크</li>
+                <li>🎉 결과에 따른 맞춤 성격 분석</li>
+              </ul>
+            </div>
           </div>
         </div>
       )}
@@ -253,6 +264,14 @@ function App() {
           </div>
         </div>
       )}
+
+      <footer className="footer" style={{ marginTop: '40px', padding: '20px', textAlign: 'center', borderTop: '1px solid var(--border)', fontSize: '14px', color: 'var(--mid)' }}>
+        <p>© 2026 나랑 닮은 포켓몬 테스트. All rights reserved.</p>
+        <p>포켓몬 데이터 및 이미지는 PokeAPI를 활용하였습니다.</p>
+        <div className="footer-links" style={{ marginTop: '10px' }}>
+          <span style={{ cursor: 'pointer' }}>개인정보처리방침</span> | <span style={{ cursor: 'pointer' }}>이용약관</span>
+        </div>
+      </footer>
     </div>
   );
 }

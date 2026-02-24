@@ -132,6 +132,65 @@ h1 .highlight::after {
 }
 .start-btn:active { transform:scale(0.98); }
 
+/* ── Info & Footer ── */
+.start-info {
+  margin-top: 48px;
+  text-align: left;
+  background: var(--white);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.start-info h3 {
+  font-family: 'Gaegu', cursive;
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+.start-info p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mid);
+  margin-bottom: 20px;
+}
+.start-info ul {
+  list-style: none;
+  padding: 0;
+}
+.start-info li {
+  font-size: 14px;
+  color: var(--mid);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer {
+  margin-top: 60px;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer p {
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+.footer-links {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--mid);
+}
+.footer-links span {
+  cursor: pointer;
+  margin: 0 8px;
+}
+.footer-links span:hover {
+  color: var(--dark);
+}
+
 /* ── Quiz ── */
 .quiz-header {
   padding:32px 0 0;
