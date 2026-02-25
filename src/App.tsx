@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { QUESTIONS, RESULTS, type Result } from './constants';
 import pokeball from './assets/pokeball.svg';
+import BackgroundMusic from './BackgroundMusic';
 
 type Screen = 'START' | 'QUIZ' | 'LOADING' | 'RESULT' | 'HISTORY';
 
@@ -128,6 +129,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <BackgroundMusic />
       <div className="app-content">
         {/* Header */}
         <header className="app-header">
