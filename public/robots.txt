@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mymbtipokemon.web.app/sitemap.xml

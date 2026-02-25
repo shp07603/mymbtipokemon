@@ -134,12 +134,12 @@ function App() {
         {/* Header */}
         <header className="app-header">
           {screen === 'START' ? (
-            <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)}>menu</span>
+            <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)} aria-label="메뉴 열기">menu</span>
           ) : (
-            <span className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')}>arrow_back</span>
+            <span className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')} aria-label="홈으로 돌아가기">arrow_back</span>
           )}
           <h2 className="header-title">Pokemon Quiz</h2>
-          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)}>account_circle</span>
+          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)} aria-label="프로필 및 로그인">account_circle</span>
         </header>
 
         {screen === 'START' && (
@@ -153,7 +153,8 @@ function App() {
                       <img 
                         key={index}
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} 
-                        alt="pokemon" 
+                        alt="포켓몬 이미지" 
+                        loading="lazy"
                       />
                     ))}
                   </div>
