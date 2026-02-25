@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const BackgroundMusic: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const toggleMusic = () => {
@@ -18,9 +18,16 @@ const BackgroundMusic: React.FC = () => {
   };
 
   useEffect(() => {
-    // Attempt to play on mount if possible (usually restricted)
     if (audioRef.current) {
       audioRef.current.volume = 0.4;
+      if (isPlaying) {
+        audioRef.current.play().catch(error => {
+          // Most browsers block autoplay without user interaction
+          console.log("Autoplay blocked by browser. Music will start after user interaction.", error);
+          // Keep isPlaying as true so the UI shows it's "on", 
+          // but it will actually play when the user clicks something.
+        });
+      }
     }
   }, []);
 
