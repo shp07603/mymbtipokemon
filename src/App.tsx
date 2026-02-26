@@ -134,7 +134,6 @@ function App() {
     const name = finalResult.name[lang];
     const desc = finalResult.desc[lang];
     const traits = finalResult.traits[lang].map(t => `#${t}`).join(' ');
-    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${finalResult.id}.png`;
     const shareUrl = 'https://mypokemon.win/';
 
     // Rich share text
@@ -146,7 +145,6 @@ function App() {
         text: shareText,
         url: shareUrl
       }).catch(() => {
-        // Fallback to clipboard if share is cancelled or fails
         copyToClipboard(`${shareText}\n\n${shareUrl}`);
       });
     } else {
@@ -170,85 +168,90 @@ function App() {
       <BackgroundMusic />
       {/* Hidden H1 for SEO keyword optimization */}
       <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>
-        Pokemon MBTI Test - Which Pokemon Are You?
+        Pokemon MBTI Test - Which Pokemon Are You? - Personality Quiz
       </h1>
-      <div className="app-content">
+      <main className="app-content">
         {/* Header */}
         <header className="app-header">
           {screen === 'START' ? (
-            <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)} aria-label="Open Menu">menu</span>
+            <button className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)} aria-label="Open Menu">menu</button>
           ) : (
-            <span className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')} aria-label="Go Home">arrow_back</span>
+            <button className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')} aria-label="Go Home">arrow_back</button>
           )}
           <h2 className="header-title">Pokemon Quiz</h2>
-          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)} aria-label="Profile">account_circle</span>
+          <button className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)} aria-label="Profile">account_circle</button>
         </header>
 
         {screen === 'START' && (
-          <div className="screen active">
+          <article className="screen active">
             <div className="start-wrap">
-              <div className="hero-box">
-                {/* Marquee Animation */}
+              <section className="hero-box" aria-label="Pokemon Showcase">
                 <div className="marquee-container">
                   <div className="marquee-content">
                     {marqueePokemons.concat(marqueePokemons).map((id, index) => (
                       <img 
                         key={index}
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} 
-                        alt="Pokemon" 
+                        alt="Pokemon Artwork" 
                         loading="lazy"
                       />
                     ))}
                   </div>
                 </div>
-
                 <div className="hero-overlay"></div>
                 <div className="hero-tag-wrap">
                   <span className="start-tag">{t.trending}</span>
                 </div>
-              </div>
+              </section>
 
-              {/* Language Switcher */}
-              <div className="lang-switcher">
+              <nav className="lang-switcher" aria-label="Language selection">
                 <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => changeLang('en')}>EN</button>
                 <button className={`lang-btn ${lang === 'ko' ? 'active' : ''}`} onClick={() => changeLang('ko')}>KO</button>
                 <button className={`lang-btn ${lang === 'ja' ? 'active' : ''}`} onClick={() => changeLang('ja')}>JA</button>
-              </div>
+              </nav>
 
-              <h1 className="main-title">
-                {t.title}<br />
-                <span className="highlight">{t.highlight}</span>
-              </h1>
-              <p className="start-desc">{t.startDesc}</p>
+              <header className="title-area">
+                <h1 className="main-title">
+                  {t.title}<br />
+                  <span className="highlight">{t.highlight}</span>
+                </h1>
+                <p className="start-desc">{t.startDesc}</p>
+              </header>
 
-              <div className="meta-stats">
+              <section className="meta-stats" aria-label="Quiz Statistics">
                 <div className="stat-box">
-                  <span className="material-symbols-outlined">timer</span>
+                  <span className="material-symbols-outlined" aria-hidden="true">timer</span>
                   <span>{t.stats.time}</span>
                 </div>
                 <div className="stat-box">
-                  <span className="material-symbols-outlined">quiz</span>
+                  <span className="material-symbols-outlined" aria-hidden="true">quiz</span>
                   <span>{t.stats.qs}</span>
                 </div>
                 <div className="stat-box">
-                  <span className="material-symbols-outlined">group</span>
+                  <span className="material-symbols-outlined" aria-hidden="true">group</span>
                   <span>{t.stats.users}</span>
                 </div>
-              </div>
+              </section>
 
               <div className="action-area">
                 <button className="start-btn" onClick={startQuiz}>
                   <span>{t.startBtn}</span>
-                  <span className="material-symbols-outlined">play_arrow</span>
+                  <span className="material-symbols-outlined" aria-hidden="true">play_arrow</span>
                 </button>
               </div>
+
+              <section className="start-info" aria-labelledby="about-heading">
+                <h2 id="about-heading" style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '8px' }}>How the Pokemon MBTI Test Works 🌟</h2>
+                <p>Ever wondered which Pokemon matches your real-life personality? Our **Pokemon MBTI Test** uses advanced behavioral mapping to connect your 16 personality types with iconic Pokemon species. By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate.</p>
+                <p style={{ marginTop: '8px' }}>Whether you're a strategic **Metagross** or a creative **Mew**, discover your hidden potential and share your unique battle style with the world!</p>
+              </section>
             </div>
-          </div>
+          </article>
         )}
 
         {screen === 'QUIZ' && (
-          <div className="screen active quiz-screen">
-            <section className="progress-section">
+          <section className="screen active quiz-screen">
+            <div className="progress-section">
               <div className="progress-info">
                 <span className="progress-label">{t.progress}</span>
                 <span className="progress-count">{t.questionOf.replace('{n}', (qIndex + 1).toString()).replace('{total}', QUESTIONS.length.toString())}</span>
@@ -259,11 +262,10 @@ function App() {
                   style={{ width: `${((qIndex + 1) / QUESTIONS.length) * 100}%` }}
                 ></div>
               </div>
-            </section>
+            </div>
 
-            <main className="quiz-main">
-              <h1 className="question-text">{QUESTIONS[qIndex].text[lang]}</h1>
-              
+            <article className="quiz-main">
+              <h2 className="question-text">{QUESTIONS[qIndex].text[lang]}</h2>
               <div className="options-grid">
                 {QUESTIONS[qIndex].options.map((opt, i) => (
                   <button 
@@ -272,7 +274,7 @@ function App() {
                     onClick={() => handleAnswer(opt.type)}
                   >
                     <div className={`option-icon-box ${opt.color || 'bg-slate-100'}`}>
-                      <span className="material-symbols-outlined">{opt.icon}</span>
+                      <span className="material-symbols-outlined" aria-hidden="true">{opt.icon}</span>
                     </div>
                     <div className="option-info">
                       <p className="option-title">{opt.text[lang]}</p>
@@ -281,34 +283,34 @@ function App() {
                   </button>
                 ))}
               </div>
-            </main>
-          </div>
+            </article>
+          </section>
         )}
 
         {screen === 'LOADING' && (
-          <div className="screen active loading-screen">
+          <section className="screen active loading-screen">
             <div className="loading-content">
-              <img src={pokeball} className="loading-ball" alt="Loading" />
+              <img src={pokeball} className="loading-ball" alt="Loading Spinner" />
               <div className="loading-text">{t.loading}</div>
               <div className="loading-sub">{t.loadingSub}</div>
             </div>
-          </div>
+          </section>
         )}
 
         {screen === 'RESULT' && finalResult && (
-          <div className="screen active result-screen">
+          <article className="screen active result-screen">
             <div className="result-wrap">
-              <div className="result-header">
+              <header className="result-header">
                 <div className="result-eyebrow">{t.resultEyebrow}</div>
                 <h1 className="result-main-title">{finalResult.title[lang]}</h1>
-              </div>
+              </header>
 
-              <div className="result-card" style={{ '--type-color': finalResult.typeColor } as React.CSSProperties}>
+              <section className="result-card" style={{ '--type-color': finalResult.typeColor } as React.CSSProperties}>
                 <div className="result-mon-wrap">
                   <img
                     className="result-mon"
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${finalResult.id}.png`}
-                    alt={finalResult.name[lang]}
+                    alt={`${finalResult.name[lang]} official artwork`}
                   />
                 </div>
                 <div className="result-badge-row">
@@ -321,12 +323,12 @@ function App() {
                 <p className="result-desc-text">{finalResult.desc[lang]}</p>
                 <div className="traits-row">
                   {finalResult.traits[lang].map((trait, i) => (
-                    <span key={i} className="trait-tag">{trait}</span>
+                    <span key={i} className="trait-tag">#{trait}</span>
                   ))}
                 </div>
-              </div>
+              </section>
 
-              <div className="score-summary">
+              <section className="score-summary" aria-label="Matching Statistics">
                 {Object.entries(scores)
                   .sort((a, b) => b[1] - a[1])
                   .slice(0, 3)
@@ -341,11 +343,11 @@ function App() {
                       </div>
                     );
                   })}
-              </div>
+              </section>
 
               <div className="result-actions">
                 <button className="share-btn" onClick={shareResult}>
-                  <span className="material-symbols-outlined">share</span>
+                  <span className="material-symbols-outlined" aria-hidden="true">share</span>
                   {t.share}
                 </button>
                 <button className="retry-btn" onClick={retryQuiz}>
@@ -353,14 +355,13 @@ function App() {
                 </button>
               </div>
             </div>
-          </div>
+          </article>
         )}
 
         {screen === 'HISTORY' && (
-          <div className="screen active">
+          <section className="screen active">
             <h1 className="main-title" style={{marginTop: '20px'}}>{t.history}</h1>
             <p className="start-desc">{t.historyDesc}</p>
-            
             {historyList.length === 0 ? (
               <div style={{textAlign: 'center', marginTop: '40px', color: 'var(--slate-400)'}}>
                 <span className="material-symbols-outlined" style={{fontSize: '48px', marginBottom: '16px'}}>history</span>
@@ -369,10 +370,10 @@ function App() {
             ) : (
               <div className="history-list">
                 {historyList.map((item, i) => (
-                  <div key={i} className="history-item">
+                  <article key={i} className="history-item">
                     <img 
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.result.id}.png`} 
-                      alt={item.result.name[lang] || item.result.name['en']} 
+                      alt={item.result.name[lang]} 
                       className="history-mon"
                     />
                     <div className="history-info">
@@ -380,27 +381,27 @@ function App() {
                       <p className="history-name">{item.result.name[lang] || item.result.name['en']}</p>
                       <span className="history-type" style={{background: item.result.typeColor}}>{item.result.type[lang] || item.result.type['en']}</span>
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             )}
-          </div>
+          </section>
         )}
 
         {/* Bottom Nav */}
-        <nav className="bottom-nav">
-          <a className={`nav-item ${screen === 'START' ? 'active' : ''}`} onClick={() => setScreen('START')}>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'START' ? "'FILL' 1" : "'FILL' 0" }}>home</span>
+        <nav className="bottom-nav" aria-label="Main Navigation">
+          <button className={`nav-item ${screen === 'START' ? 'active' : ''}`} onClick={() => setScreen('START')}>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'START' ? "'FILL' 1" : "'FILL' 0" }} aria-hidden="true">home</span>
             <span className="nav-label">{t.home}</span>
-          </a>
-          <a className={`nav-item ${screen === 'HISTORY' ? 'active' : ''}`} onClick={() => setScreen('HISTORY')}>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'HISTORY' ? "'FILL' 1" : "'FILL' 0" }}>history</span>
+          </button>
+          <button className={`nav-item ${screen === 'HISTORY' ? 'active' : ''}`} onClick={() => setScreen('HISTORY')}>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: screen === 'HISTORY' ? "'FILL' 1" : "'FILL' 0" }} aria-hidden="true">history</span>
             <span className="nav-label">History</span>
-          </a>
-          <a className="nav-item" onClick={() => setIsRightProfileOpen(true)}>
-            <span className="material-symbols-outlined">person</span>
+          </button>
+          <button className="nav-item" onClick={() => setIsRightProfileOpen(true)}>
+            <span className="material-symbols-outlined" aria-hidden="true">person</span>
             <span className="nav-label">{t.profile}</span>
-          </a>
+          </button>
         </nav>
 
         <footer className="footer">
@@ -409,13 +410,13 @@ function App() {
           </div>
           <p className="copyright">© 2026 Pokemon Quiz. All rights reserved.</p>
         </footer>
-      </div>
+      </main>
 
-      {/* Modals for Privacy & Terms */}
+      {/* Modals & Drawers */}
       {modalType && (
         <div className="modal-overlay" onClick={() => setModalType(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setModalType(null)}>✕</button>
+          <article className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setModalType(null)} aria-label="Close Modal">✕</button>
             <h2 className="modal-title">{modalType === 'privacy' ? t.footerPrivacy : t.footerTerms}</h2>
             <div className="modal-body">
               {modalType === 'privacy' ? (
@@ -460,53 +461,45 @@ function App() {
                 )
               )}
             </div>
-          </div>
+          </article>
         </div>
       )}
 
-      {/* Left Menu Drawer */}
-      {isLeftMenuOpen && (
-        <div className="drawer-overlay" onClick={() => setIsLeftMenuOpen(false)}></div>
-      )}
-      <div className={`drawer drawer-left ${isLeftMenuOpen ? 'open' : ''}`}>
+      {isLeftMenuOpen && <div className="drawer-overlay" onClick={() => setIsLeftMenuOpen(false)}></div>}
+      <aside className={`drawer drawer-left ${isLeftMenuOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <h2>{t.drawerMenu}</h2>
-          <span className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(false)}>close</span>
+          <button className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(false)} aria-label="Close Menu">close</button>
         </div>
-        <div className="drawer-menu">
-          <div className="drawer-menu-item" onClick={() => { setScreen('START'); setIsLeftMenuOpen(false); }}>
+        <nav className="drawer-menu">
+          <button className="drawer-menu-item" onClick={() => { setScreen('START'); setIsLeftMenuOpen(false); }}>
             <span className="material-symbols-outlined">home</span> {t.drawerHome}
-          </div>
-          <div className="drawer-menu-item" onClick={() => { setScreen('HISTORY'); setIsLeftMenuOpen(false); }}>
+          </button>
+          <button className="drawer-menu-item" onClick={() => { setScreen('HISTORY'); setIsLeftMenuOpen(false); }}>
             <span className="material-symbols-outlined">history</span> {t.drawerHistory}
-          </div>
-          <div className="drawer-menu-item" onClick={() => { setIsLeftMenuOpen(false); setModalType('privacy'); }}>
+          </button>
+          <button className="drawer-menu-item" onClick={() => { setIsLeftMenuOpen(false); setModalType('privacy'); }}>
             <span className="material-symbols-outlined">policy</span> {t.drawerPolicy}
-          </div>
-        </div>
-      </div>
+          </button>
+        </nav>
+      </aside>
 
-      {/* Right Profile Drawer */}
-      {isRightProfileOpen && (
-        <div className="drawer-overlay" onClick={() => setIsRightProfileOpen(false)}></div>
-      )}
-      <div className={`drawer drawer-right ${isRightProfileOpen ? 'open' : ''}`}>
+      {isRightProfileOpen && <div className="drawer-overlay" onClick={() => setIsRightProfileOpen(false)}></div>}
+      <aside className={`drawer drawer-right ${isRightProfileOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <h2>{t.loginTitle}</h2>
-          <span className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(false)}>close</span>
+          <button className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(false)} aria-label="Close Profile">close</button>
         </div>
-        <div className="login-form">
+        <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <p style={{fontSize: '14px', color: 'var(--slate-600)', marginBottom: '8px'}}>{t.loginSub}</p>
-          <input type="email" placeholder={t.emailPlaceholder} className="login-input" />
-          <input type="password" placeholder={t.passwordPlaceholder} className="login-input" />
-          <button className="login-btn" onClick={() => { alert(t.comingSoon); setIsRightProfileOpen(false); }}>{t.loginBtn}</button>
-          
+          <input type="email" placeholder={t.emailPlaceholder} className="login-input" aria-label="Email" />
+          <input type="password" placeholder={t.passwordPlaceholder} className="login-input" aria-label="Password" />
+          <button type="submit" className="login-btn" onClick={() => { alert(t.comingSoon); setIsRightProfileOpen(false); }}>{t.loginBtn}</button>
           <div style={{textAlign: 'center', marginTop: '16px', fontSize: '14px'}}>
             <a href="#" style={{color: 'var(--primary)', textDecoration: 'underline'}}>{t.noAccount}</a>
           </div>
-        </div>
-      </div>
-
+        </form>
+      </aside>
     </div>
   );
 }
