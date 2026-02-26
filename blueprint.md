@@ -16,6 +16,7 @@
 - **Icons/Images:** PokeAPI (Official Artwork)
 - **Typography:** Google Fonts (Gaegu, Noto Sans KR)
 - **Analytics:** Google Analytics (G-D1XH9D65KC)
+- **Monetization:** Google AdSense (ca-pub-7374766314401295)
 
 ## 디자인 가이드
 - **Color Palette:**
@@ -36,3 +37,4 @@
     *   `ResultScreen`: 결과 상세 및 다시 하기/공유 버튼.
 4.  **로직 구현:** 상태 관리(useState)를 통한 화면 전환 및 점수 계산 로직.
 5.  **마무리:** Confetti(폭죽) 효과 및 반응형 디테일 수정.
+6.  **배포 및 수익화:** Google AdSense 설정 및 `ads.txt` 파일 최적화 (Root 경로 배치 및 개행 문자 추가).
