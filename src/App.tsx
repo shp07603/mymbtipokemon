@@ -130,17 +130,33 @@ function App() {
 
   const shareResult = () => {
     if (!finalResult) return;
-    const shareText = t.resultShareText.replace('{name}', finalResult.name[lang]);
+    
+    const name = finalResult.name[lang];
+    const desc = finalResult.desc[lang];
+    const traits = finalResult.traits[lang].map(t => `#${t}`).join(' ');
+    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${finalResult.id}.png`;
     const shareUrl = 'https://mypokemon.win/';
+
+    // Rich share text
+    const shareText = `${t.resultEyebrow} [${finalResult.title[lang]}]\n\n"${desc}"\n\n${traits}\n\n${t.resultShareText.replace('{name}', name)}`;
     
     if (navigator.share) {
       navigator.share({ 
-        title: t.resultEyebrow, 
+        title: `${t.resultEyebrow}: ${name}`, 
         text: shareText,
         url: shareUrl
+      }).catch(() => {
+        // Fallback to clipboard if share is cancelled or fails
+        copyToClipboard(`${shareText}\n\n${shareUrl}`);
       });
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(`${shareText}\n${shareUrl}`).then(() => {
+    } else {
+      copyToClipboard(`${shareText}\n\n${shareUrl}`);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
         alert(t.copied);
       });
     }
