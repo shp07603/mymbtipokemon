@@ -457,7 +457,7 @@ function App() {
                 ) : lang === 'ja' ? (
                   <>
                     <p><strong>第1条（目的）</strong><br />本サービスは無料で提供される心理・傾向テストウェブアプリケーションです。</p>
-                    <p><strong>第2条（著作権および免責事項）</strong><br />当サイトで使用されているポケモン関連の画像、名前、データなどの知的財産権は、元の著作権者に帰属します。このテストの結果には科学的根拠はなく、娯楽目的のコンテンツです。</p>
+                    <p><strong>第2条（著作権および免責事項）</strong><br />当サイトで使用されているポケモン関連の画像、名前、データなどの知的財産権は、元の著作権者に帰属します。このテストの結果には科学적根拠はなく、娯楽目的のコンテンツです。</p>
                   </>
                 ) : (
                   <>
@@ -496,7 +496,7 @@ function App() {
       <aside className={`drawer drawer-right ${isRightProfileOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <h2>{t.loginTitle}</h2>
-          <button className="icon-btn" onClick={() => setIsRightProfileOpen(false)} aria-label="Close Profile">
+          <button className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(false)} aria-label="Close Profile">
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
