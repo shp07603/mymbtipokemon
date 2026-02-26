@@ -131,10 +131,16 @@ function App() {
   const shareResult = () => {
     if (!finalResult) return;
     const shareText = t.resultShareText.replace('{name}', finalResult.name[lang]);
+    const shareUrl = 'https://mypokemon.win/';
+    
     if (navigator.share) {
-      navigator.share({ title: t.resultEyebrow, text: shareText });
+      navigator.share({ 
+        title: t.resultEyebrow, 
+        text: shareText,
+        url: shareUrl
+      });
     } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(shareText).then(() => {
+      navigator.clipboard.writeText(`${shareText}\n${shareUrl}`).then(() => {
         alert(t.copied);
       });
     }
