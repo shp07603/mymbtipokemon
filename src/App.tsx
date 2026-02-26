@@ -174,12 +174,18 @@ function App() {
         {/* Header */}
         <header className="app-header">
           {screen === 'START' ? (
-            <button className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(true)} aria-label="Open Menu">menu</button>
+            <button className="icon-btn" onClick={() => setIsLeftMenuOpen(true)} aria-label="Open Menu">
+              <span className="material-symbols-outlined">menu</span>
+            </button>
           ) : (
-            <button className="material-symbols-outlined icon-btn" onClick={() => setScreen('START')} aria-label="Go Home">arrow_back</button>
+            <button className="icon-btn" onClick={() => setScreen('START')} aria-label="Go Home">
+              <span className="material-symbols-outlined">arrow_back</span>
+            </button>
           )}
           <h2 className="header-title">Pokemon Quiz</h2>
-          <button className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(true)} aria-label="Profile">account_circle</button>
+          <button className="icon-btn" onClick={() => setIsRightProfileOpen(true)} aria-label="Profile">
+            <span className="material-symbols-outlined">account_circle</span>
+          </button>
         </header>
 
         {screen === 'START' && (
@@ -241,9 +247,9 @@ function App() {
               </div>
 
               <section className="start-info" aria-labelledby="about-heading">
-                <h2 id="about-heading" style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '8px' }}>How the Pokemon MBTI Test Works 🌟</h2>
-                <p>Ever wondered which Pokemon matches your real-life personality? Our **Pokemon MBTI Test** uses advanced behavioral mapping to connect your 16 personality types with iconic Pokemon species. By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate.</p>
-                <p style={{ marginTop: '8px' }}>Whether you're a strategic **Metagross** or a creative **Mew**, discover your hidden potential and share your unique battle style with the world!</p>
+                <h2 id="about-heading" style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '8px' }}>{t.aboutTitle}</h2>
+                <p>{t.aboutDesc1}</p>
+                <p style={{ marginTop: '8px' }}>{t.aboutDesc2}</p>
               </section>
             </div>
           </article>
@@ -373,7 +379,7 @@ function App() {
                   <article key={i} className="history-item">
                     <img 
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.result.id}.png`} 
-                      alt={item.result.name[lang]} 
+                      alt={item.result.name[lang] || item.result.name['en']} 
                       className="history-mon"
                     />
                     <div className="history-info">
@@ -469,7 +475,9 @@ function App() {
       <aside className={`drawer drawer-left ${isLeftMenuOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <h2>{t.drawerMenu}</h2>
-          <button className="material-symbols-outlined icon-btn" onClick={() => setIsLeftMenuOpen(false)} aria-label="Close Menu">close</button>
+          <button className="icon-btn" onClick={() => setIsLeftMenuOpen(false)} aria-label="Close Menu">
+            <span className="material-symbols-outlined">close</span>
+          </button>
         </div>
         <nav className="drawer-menu">
           <button className="drawer-menu-item" onClick={() => { setScreen('START'); setIsLeftMenuOpen(false); }}>
@@ -488,7 +496,9 @@ function App() {
       <aside className={`drawer drawer-right ${isRightProfileOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <h2>{t.loginTitle}</h2>
-          <button className="material-symbols-outlined icon-btn" onClick={() => setIsRightProfileOpen(false)} aria-label="Close Profile">close</button>
+          <button className="icon-btn" onClick={() => setIsRightProfileOpen(false)} aria-label="Close Profile">
+            <span className="material-symbols-outlined">close</span>
+          </button>
         </div>
         <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <p style={{fontSize: '14px', color: 'var(--slate-600)', marginBottom: '8px'}}>{t.loginSub}</p>

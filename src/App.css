@@ -60,11 +60,17 @@ body {
 }
 
 .icon-btn {
+  font-family: 'Material Symbols Outlined';
   font-size: 24px;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
 }
 .icon-btn:hover { background-color: rgba(0,0,0,0.05); }
 
