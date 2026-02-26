@@ -118,7 +118,7 @@ export const QUESTIONS: Question[] = [
       },
       { 
         icon: 'headset', 
-        text: { ko: '혼자만의 시간', en: 'Time alone', ja: '一인의 시간' }, 
+        text: { ko: '혼자만의 시간', en: 'Time alone', ja: '一人の時間' }, 
         subText: { ko: '음악으로 정화', en: 'Purify with music', ja: '音楽で浄化' }, 
         type: 'ghost', 
         color: 'bg-purple-100 text-purple-500' 
@@ -246,7 +246,7 @@ export const QUESTIONS: Question[] = [
       },
       { 
         icon: 'auto_awesome', 
-        text: { ko: '변칙 공격', en: 'Unpredictable attack', ja: '変則攻撃' }, 
+        text: { ko: '변칙 공격', en: 'Unpredictable attack', ja: '변칙 공격', ja: '変則攻撃' }, 
         subText: { ko: '게릴라 전술', en: 'Guerrilla tactics', ja: 'ゲリラ戦術' }, 
         type: 'ghost', 
         color: 'bg-purple-100 text-purple-500' 
@@ -365,7 +365,7 @@ export const RESULTS: Record<string, Result> = {
   psychic: {
     id: 151,
     name: { ko: '뮤', en: 'Mew', ja: 'ミュウ' },
-    type: { ko: '🔮 에스퍼 타입', en: '🔮 Psychic Type', ja: '🔮 エスパータイプ' },
+    type: { ko: '🔮 에스퍼 타입', en: '🔮 Psychic Type', ja: '🔮 エ스パータイプ' },
     typeColor: '#ec407a',
     title: { ko: '당신은 뮤입니다!', en: 'You are Mew!', ja: 'あなたはミュウです！' },
     desc: { 
@@ -405,7 +405,7 @@ export const RESULTS: Record<string, Result> = {
     desc: { 
       ko: '여유롭고 대범한 성격의 소유자예요. 무엇이든 크게 동요하지 않는 든든한 존재감을 가지고 있어요. 한번 마음먹으면 어마어마한 집중력을 발휘합니다.', 
       en: 'Possessor of a relaxed and bold personality. You have a reliable presence that doesn\'t get shaken easily. You show great focus once you decide.', 
-      ja: 'ゆったりとして大胆な性格の持ち主です。何事にも動じない、心強い存在感を持っています。一度決めると凄まじい集中力を発揮します。' 
+      ja: 'ゆったりとして大胆な性格の持ち主です。何事にも動じない、心強い存在感を持っています。一度決めると凄まじい集中力を発휘します。' 
     },
     traits: { 
       ko: ['여유로움', '든든함', '집중력', '대범함', '신뢰의 존재'], 
@@ -451,8 +451,8 @@ export const UI_TEXT: Record<Language, any> = {
     copied: "Result copied to clipboard!",
     comingSoon: "Feature coming soon.",
     aboutTitle: "How the Pokemon MBTI Test Works 🌟",
-    aboutDesc1: "Ever wondered which Pokemon matches your real-life personality? Our **Pokemon MBTI Test** uses advanced behavioral mapping to connect your 16 personality types with iconic Pokemon species.",
-    aboutDesc2: "By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate. Whether you're a strategic **Metagross** or a creative **Mew**, discover your hidden potential!"
+    aboutDesc1: "Ever wondered which Pokemon matches your real-life personality? Our Pokemon MBTI Test uses advanced behavioral mapping to connect your 16 personality types with iconic Pokemon species.",
+    aboutDesc2: "By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate. Whether you're a strategic Metagross or a creative Mew, discover your hidden potential!"
   },
   ko: {
     title: "나랑 닮은",
@@ -489,8 +489,8 @@ export const UI_TEXT: Record<Language, any> = {
     copied: "결과가 클립보드에 복사되었습니다!",
     comingSoon: "준비중인 기능입니다.",
     aboutTitle: "포켓몬 MBTI 테스트의 원리 🌟",
-    aboutDesc1: "현실의 당신은 포켓몬 세계에서 어떤 모습일까요? **포켓몬 MBTI 테스트**는 16가지 성격 유형 데이터를 바탕으로 당신의 성향과 가장 일치하는 포켓몬을 매칭해 드립니다.",
-    aboutDesc2: "사회적 에너지부터 배틀 전략까지, 7가지 핵심 질문을 통해 당신의 내면을 분석합니다. 전략적인 **메타그로스**부터 창의적인 **뮤**까지, 당신의 진정한 파트너를 지금 바로 찾아보세요!"
+    aboutDesc1: "현실의 당신은 포켓몬 세계에서 어떤 모습일까요? 포켓몬 MBTI 테스트는 16가지 성격 유형 데이터를 바탕으로 당신의 성향과 가장 일치하는 포켓몬을 매칭해 드립니다.",
+    aboutDesc2: "사회적 에너지부터 배틀 전략까지, 7가지 핵심 질문을 통해 당신의 내면을 분석합니다. 전략적인 메타그로스부터 창의적인 뮤까지, 당신의 진정한 파트너를 지금 바로 찾아보세요!"
   },
   ja: {
     title: "私に似た",
@@ -527,7 +527,7 @@ export const UI_TEXT: Record<Language, any> = {
     copied: "結果がクリップボードにコピーされました！",
     comingSoon: "準備中の機能です。",
     aboutTitle: "ポケモンMBTIテストの仕組み 🌟",
-    aboutDesc1: "現実のあなたはポケモン界でどんな姿でしょうか？**ポケモンMBTIテスト**は、16の性格診断アルゴリズムを用いて、あなたに最適なポケモンを導き出します。",
-    aboutDesc2: "社交性からバトルの戦略まで、7つの質問であなたの深層心理を分析します。戦略的な**メタグロス**から創造的な**ミュウ**まで、あなたのパートナーを見つけましょう！"
+    aboutDesc1: "現実のあなたはポケモン界でどんな姿でしょうか？ポケモンMBTIテストは、16の性格診断アルゴリズムを用いて、あなたに最適なポケモンを導き出します。",
+    aboutDesc2: "社交性からバトルの戦略まで、7つの質問であなたの深層心理を分析します。戦略的なメタグロスから創造的なミュウまで、あなたのパートナーを見つけましょう！"
   }
 };
