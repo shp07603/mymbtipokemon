@@ -148,6 +148,30 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+/* Language Switcher */
+.lang-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.lang-btn {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--slate-400);
+}
+.lang-btn.active {
+  background: var(--slate-900);
+  border-color: var(--slate-900);
+  color: var(--white);
+}
+
 .main-title {
   font-size: 2.25rem;
   font-weight: 800;
