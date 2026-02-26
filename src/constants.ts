@@ -246,7 +246,7 @@ export const QUESTIONS: Question[] = [
       },
       { 
         icon: 'auto_awesome', 
-        text: { ko: '변칙 공격', en: 'Unpredictable attack', ja: '변칙 공격', ja: '変則攻撃' }, 
+        text: { ko: '변칙 공격', en: 'Unpredictable attack', ja: '変則攻撃' }, 
         subText: { ko: '게릴라 전술', en: 'Guerrilla tactics', ja: 'ゲリラ戦術' }, 
         type: 'ghost', 
         color: 'bg-purple-100 text-purple-500' 
@@ -365,7 +365,7 @@ export const RESULTS: Record<string, Result> = {
   psychic: {
     id: 151,
     name: { ko: '뮤', en: 'Mew', ja: 'ミュウ' },
-    type: { ko: '🔮 에스퍼 타입', en: '🔮 Psychic Type', ja: '🔮 エ스パータイプ' },
+    type: { ko: '🔮 에스퍼 타입', en: '🔮 Psychic Type', ja: '🔮 エスパータイプ' },
     typeColor: '#ec407a',
     title: { ko: '당신은 뮤입니다!', en: 'You are Mew!', ja: 'あなたはミュウです！' },
     desc: { 
@@ -398,14 +398,14 @@ export const RESULTS: Record<string, Result> = {
   },
   normal: {
     id: 143,
-    name: { ko: '잠만보', en: 'Snorlax', ja: 'カビゴン' },
+    name: { ko: '잠만보', en: 'Snorlax', ja: 'カ비ゴン' },
     type: { ko: '⭐ 노멀 타입', en: '⭐ Normal Type', ja: '⭐ ノーマルタイプ' },
     typeColor: '#8d7b68',
-    title: { ko: '당신은 잠만보입니다!', en: 'You are Snorlax!', ja: 'あなたはカビゴンです！' },
+    title: { ko: '당신은 잠만보입니다!', en: 'You are Snorlax!', ja: 'あなたはカ비ゴンです！' },
     desc: { 
       ko: '여유롭고 대범한 성격의 소유자예요. 무엇이든 크게 동요하지 않는 든든한 존재감을 가지고 있어요. 한번 마음먹으면 어마어마한 집중력을 발휘합니다.', 
       en: 'Possessor of a relaxed and bold personality. You have a reliable presence that doesn\'t get shaken easily. You show great focus once you decide.', 
-      ja: 'ゆったりとして大胆な性格の持ち主です。何事にも動じない、心強い存在感を持っています。一度決めると凄まじい集中力を発휘します。' 
+      ja: 'ゆったりとして大胆な性格の持ち主です。何事にも動じない、心強い存在感を持っています。一度決めると凄まじい集中力を発휘합니다. ' 
     },
     traits: { 
       ko: ['여유로움', '든든함', '집중력', '대범함', '신뢰의 존재'], 
@@ -495,7 +495,7 @@ export const UI_TEXT: Record<Language, any> = {
   ja: {
     title: "私に似た",
     highlight: "ポケモンはだれ？",
-    startDesc: "たった7つの楽しい質問で、あなたの内なるポケモンとバトルスタイルを見つけましょう！",
+    startDesc: "たった7つの楽しい質問で、あなたの 내なるポケモンとバトルスタイルを見つけましょう！",
     startBtn: "テスト開始",
     trending: "人気クイズ",
     stats: { time: "2分", qs: "7問", users: "1万+" },
