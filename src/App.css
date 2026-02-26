@@ -671,3 +671,35 @@ body {
   0%, 100% { transform: scaleY(1); }
   50% { transform: scaleY(1.5); }
 }
+
+/* ── Media Queries for Responsiveness ── */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 480px;
+    border-radius: 2rem;
+    margin: 40px auto;
+    height: calc(100vh - 80px);
+    min-height: 800px;
+  }
+  
+  .bottom-nav {
+    max-width: 480px;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  body {
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+}
+
+@media (max-height: 700px) {
+  .hero-box { margin: 8px 0 16px; }
+  .main-title { font-size: 1.75rem; }
+  .start-desc { font-size: 1rem; margin-bottom: 16px; }
+  .meta-stats { margin-bottom: 20px; }
+}
