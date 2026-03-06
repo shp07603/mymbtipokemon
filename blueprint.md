@@ -37,4 +37,5 @@
     *   `ResultScreen`: 결과 상세 및 다시 하기/공유 버튼.
 4.  **로직 구현:** 상태 관리(useState)를 통한 화면 전환 및 점수 계산 로직.
 5.  **마무리:** Confetti(폭죽) 효과 및 반응형 디테일 수정.
-6.  **배포 및 수익화:** Google AdSense 설정 및 `ads.txt` 파일 최적화 (Root 경로 배치 및 개행 문자 추가).
+6.  **배포 및 수익화:** Google AdSense 설정 및 `ads.txt` 파일 최적화 (Root 및 `public/` 경로 모두 배치, 개행 문자 포함).
+7.  **기타:** `robots.txt`, `sitemap.xml` 등 주요 정적 파일을 Root와 `public/` 폴더에 중복 배치하여 호스팅 환경에 구애받지 않고 접근 가능하도록 조치.
