@@ -112,7 +112,7 @@ export const QUESTIONS: Question[] = [
       { 
         icon: 'directions_run', 
         text: { ko: '몸 움직이기', en: 'Moving body', ja: '体を動かす' }, 
-        subText: { ko: '땀 흘리며 해소', en: 'Release with sweat', ja: '汗を流して解消' }, 
+        subText: { ko: '땀 흘리며 해소', en: 'Release with sweat', ja: '汗을 흘리며 해소' }, 
         type: 'fighting', 
         color: 'bg-orange-100 text-orange-600' 
       },
@@ -316,7 +316,7 @@ export const RESULTS: Record<string, Result> = {
     name: { ko: '갸라도스', en: 'Gyarados', ja: 'ギャラドス' },
     type: { ko: '💧 물 타입', en: '💧 Water Type', ja: '💧 みずタイプ' },
     typeColor: '#4fc3f7',
-    title: { ko: '당신은 갸라도스입니다!', en: 'You are Gyarados!', ja: 'あなたはギャラドスです！' },
+    title: { ko: '당신은 갸라도스입니다!', en: 'You are Gyarados!', ja: 'あなたはギャラド스입니다！' },
     desc: { 
       ko: '평소엔 조용하고 깊은 내면을 가지고 있지만, 한 번 폭발하면 누구도 막을 수 없는 강렬함을 품고 있어요. 시간이 지날수록 그 진가가 드러나는 타입이에요.', 
       en: 'Usually quiet with a deep inner self, but once you explode, you have an unstoppable intensity. Your true value reveals as time goes by.', 
@@ -333,7 +333,7 @@ export const RESULTS: Record<string, Result> = {
     name: { ko: '피카츄', en: 'Pikachu', ja: 'ピカチュウ' },
     type: { ko: '⚡ 전기 타입', en: '⚡ Electric Type', ja: '⚡ でんきタイプ' },
     typeColor: '#ffd600',
-    title: { ko: '당신은 피카츄입니다!', en: 'You are Pikachu!', ja: 'あなたはピカチュウです！' },
+    title: { ko: '당신은 피카츄입니다!', en: 'You are Pikachu!', ja: 'あなたはピ카츄입니다！' },
     desc: { 
       ko: '어딜 가든 존재감이 넘치고 사람들을 자연스럽게 끌어당기는 에너지를 가지고 있어요! 밝고 활발한 성격으로 주변에 활력을 불어넣습니다.', 
       en: 'Possessing a presence that naturally attracts people wherever you go! You energize your surroundings with a bright and active personality.', 
@@ -398,10 +398,10 @@ export const RESULTS: Record<string, Result> = {
   },
   normal: {
     id: 143,
-    name: { ko: '잠만보', en: 'Snorlax', ja: 'カ비ゴン' },
+    name: { ko: '잠만보', en: 'Snorlax', ja: 'カビゴン' },
     type: { ko: '⭐ 노멀 타입', en: '⭐ Normal Type', ja: '⭐ ノーマルタイプ' },
     typeColor: '#8d7b68',
-    title: { ko: '당신은 잠만보입니다!', en: 'You are Snorlax!', ja: 'あなたはカ비ゴンです！' },
+    title: { ko: '당신은 잠만보입니다!', en: 'You are Snorlax!', ja: 'あなたはカビゴンです！' },
     desc: { 
       ko: '여유롭고 대범한 성격의 소유자예요. 무엇이든 크게 동요하지 않는 든든한 존재감을 가지고 있어요. 한번 마음먹으면 어마어마한 집중력을 발휘합니다.', 
       en: 'Possessor of a relaxed and bold personality. You have a reliable presence that doesn\'t get shaken easily. You show great focus once you decide.', 
@@ -452,7 +452,9 @@ export const UI_TEXT: Record<Language, any> = {
     comingSoon: "Feature coming soon.",
     aboutTitle: "How the Pokemon MBTI Test Works 🌟",
     aboutDesc1: "Ever wondered which Pokemon matches your real-life personality? Our Pokemon MBTI Test uses advanced behavioral mapping to connect your 16 personality types with iconic Pokemon species.",
-    aboutDesc2: "By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate. Whether you're a strategic Metagross or a creative Mew, discover your hidden potential!"
+    aboutDesc2: "By analyzing 7 core traits—ranging from social energy to battle strategy—we provide a detailed breakdown of your inner Pokemon soulmate. Whether you're a strategic Metagross or a creative Mew, discover your hidden potential!",
+    guideTitle: "Pokemon MBTI Type Guide",
+    guideDesc: "Which Pokemon perfectly matches each MBTI personality type? Here are some representative matches."
   },
   ko: {
     title: "나랑 닮은",
@@ -490,7 +492,9 @@ export const UI_TEXT: Record<Language, any> = {
     comingSoon: "준비중인 기능입니다.",
     aboutTitle: "포켓몬 MBTI 테스트의 원리 🌟",
     aboutDesc1: "현실의 당신은 포켓몬 세계에서 어떤 모습일까요? 포켓몬 MBTI 테스트는 16가지 성격 유형 데이터를 바탕으로 당신의 성향과 가장 일치하는 포켓몬을 매칭해 드립니다.",
-    aboutDesc2: "사회적 에너지부터 배틀 전략까지, 7가지 핵심 질문을 통해 당신의 내면을 분석합니다. 전략적인 메타그로스부터 창의적인 뮤까지, 당신의 진정한 파트너를 지금 바로 찾아보세요!"
+    aboutDesc2: "사회적 에너지부터 배틀 전략까지, 7가지 핵심 질문을 통해 당신의 내면을 분석합니다. 전략적인 메타그로스부터 창의적인 뮤까지, 당신의 진정한 파트너를 지금 바로 찾아보세요!",
+    guideTitle: "포켓몬 MBTI 유형 가이드",
+    guideDesc: "각 MBTI 성격 유형에 딱 맞는 포켓몬은 누구일까요? 대표적인 유형들을 소개합니다."
   },
   ja: {
     title: "私に似た",
@@ -528,6 +532,41 @@ export const UI_TEXT: Record<Language, any> = {
     comingSoon: "準備中の機能です。",
     aboutTitle: "ポケモンMBTIテストの仕組み 🌟",
     aboutDesc1: "現実のあなたはポケモン界でどんな姿でしょうか？ポケモンMBTIテストは、16の性格診断アルゴリズムを用いて、あなたに最適なポケモンを導き出します。",
-    aboutDesc2: "社交性からバトルの戦略まで、7つの質問であなたの深層心理を分析します。戦略的なメタグロスから創造的なミュウまで、あなたのパートナーを見つけましょう！"
+    aboutDesc2: "社交性からバトルの戦略まで、7つの質問であなたの深層心理を分析します。戦略的なメタグロスから創造的なミュウまで、あなたのパートナーを見つけましょう！",
+    guideTitle: "ポケモンMBTIタイプガイド",
+    guideDesc: "各MBTI性格タイプにぴったりのポケモンは誰でしょうか？代表的なタイプを紹介します。"
   }
+};
+
+export const MBTI_TYPES_INFO: Record<Language, any[]> = {
+  ko: [
+    { type: 'ENFP', pokemon: '피카츄', desc: '밝고 긍정적인 에너지가 넘치며, 주변 사람들에게 즐거움을 주는 분위기 메이커입니다.' },
+    { type: 'INTJ', pokemon: '뮤츠', desc: '뛰어난 지능과 전략적인 사고력을 가졌으며, 독립적으로 목표를 달성하는 타입입니다.' },
+    { type: 'ISFP', pokemon: '이브이', desc: '유연한 사고와 풍부한 감수성을 가졌으며, 어떤 환경에서도 자신만의 매력을 발산합니다.' },
+    { type: 'ESTJ', pokemon: '리자몽', desc: '강력한 리더십과 추진력을 바탕으로 팀을 이끌며 목표를 확실하게 달성합니다.' },
+    { type: 'INFJ', pokemon: '가디안', desc: '타인의 감정을 잘 이해하고 배려하며, 신비로운 통찰력을 가진 평화주의자입니다.' },
+    { type: 'ENTP', pokemon: '팬텀', desc: '창의적이고 재치 넘치는 아이디어로 사람들을 놀라게 하며, 도전을 즐기는 모험가입니다.' },
+    { type: 'ISTP', pokemon: '개굴닌자', desc: '냉철한 판단력과 뛰어난 신체 능력을 바탕으로 실질적인 문제를 해결하는 전문가입니다.' },
+    { type: 'ESFJ', pokemon: '해피너스', desc: '사교적이고 친절하며, 주변 사람들을 돌보는 데서 큰 보람을 느끼는 수호자입니다.' }
+  ],
+  en: [
+    { type: 'ENFP', pokemon: 'Pikachu', desc: 'Full of bright, positive energy. A mood maker who brings joy to everyone around them.' },
+    { type: 'INTJ', pokemon: 'Mewtwo', desc: 'Possesses superior intelligence and strategic thinking. An independent type who achieves goals.' },
+    { type: 'ISFP', pokemon: 'Eevee', desc: 'Has flexible thinking and rich sensitivity. Expresses unique charm in any environment.' },
+    { type: 'ESTJ', pokemon: 'Charizard', desc: 'Leads teams with strong leadership and drive to achieve goals effectively.' },
+    { type: 'INFJ', pokemon: 'Gardevoir', desc: 'Understanding and considerate of others emotions. A pacifist with mysterious insight.' },
+    { type: 'ENTP', pokemon: 'Gengar', desc: 'Surprises people with creative and witty ideas. An adventurer who enjoys challenges.' },
+    { type: 'ISTP', pokemon: 'Greninja', desc: 'A professional who solves practical problems with cool judgment and great physical ability.' },
+    { type: 'ESFJ', pokemon: 'Blissey', desc: 'Sociable and kind. A guardian who finds fulfillment in taking care of others.' }
+  ],
+  ja: [
+    { type: 'ENFP', pokemon: 'ピカチュウ', desc: '明るくポジティブなエネルギーに満ち、周りの人々に楽しさを与えるムードメーカーです。' },
+    { type: 'INTJ', pokemon: 'ミュウツー', desc: '優れた知性と戦略的な思考力を持ち、独立して目標を達成するタイプです。' },
+    { type: 'ISFP', pokemon: 'イーブイ', desc: '柔軟な思考と豊かな感性を持ち、どんな環境でも自分だけの魅力を発揮します。' },
+    { type: 'ESTJ', pokemon: 'リザードン', desc: '強力なリーダーシップと推進力を基にチームを導き、目標を確実に達成します。' },
+    { type: 'INFJ', pokemon: 'サーナイト', desc: '他人の感情をよく理解し配慮する、神秘的な洞察力を持った平和主義者です。' },
+    { type: 'ENTP', pokemon: 'ゲンガー', desc: '創造的で機知に富んだアイデアで人々を驚かせ、挑戦を楽しむ冒険家です。' },
+    { type: 'ISTP', pokemon: 'ゲッコウガ', desc: '冷静な判断力と優れた身体能力を基に、実質的な問題を解決する専門家です。' },
+    { type: 'ESFJ', pokemon: 'ハピナス', desc: '社交的で親切であり、周りの人々を世話することに大きなやりがいを感じる守護者です。' }
+  ]
 };

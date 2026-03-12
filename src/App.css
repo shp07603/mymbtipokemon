@@ -731,3 +731,31 @@ body {
   .start-desc { font-size: 1rem; margin-bottom: 16px; }
   .meta-stats { margin-bottom: 20px; }
 }
+
+/* ── Guide Section ── */
+.guide-section {
+  background: var(--white);
+  padding: 24px 20px;
+  border-radius: 1.5rem;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.guide-card {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.guide-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}

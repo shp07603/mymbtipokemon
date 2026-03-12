@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { QUESTIONS, RESULTS, UI_TEXT, type Result, type Language } from './constants';
+import { QUESTIONS, RESULTS, UI_TEXT, MBTI_TYPES_INFO, type Result, type Language } from './constants';
 import pokeball from './assets/pokeball.svg';
 import BackgroundMusic from './BackgroundMusic';
 
@@ -250,6 +250,23 @@ function App() {
                 <h2 id="about-heading" style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '8px' }}>{t.aboutTitle}</h2>
                 <p>{t.aboutDesc1}</p>
                 <p style={{ marginTop: '8px' }}>{t.aboutDesc2}</p>
+              </section>
+
+              <section className="guide-section" style={{ marginTop: '24px', textAlign: 'left' }}>
+                <h2 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '8px' }}>{t.guideTitle}</h2>
+                <p style={{ marginBottom: '16px', color: 'var(--slate-600)' }}>{t.guideDesc}</p>
+                <div className="guide-grid" style={{ display: 'grid', gap: '12px' }}>
+                  {MBTI_TYPES_INFO[lang].map((item, idx) => (
+                    <div key={idx} className="guide-card" style={{ background: 'white', padding: '16px', borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                        <span style={{ fontWeight: 700, color: 'var(--primary)', fontSize: '1.125rem' }}>{item.type}</span>
+                        <span style={{ color: 'var(--slate-400)' }}>•</span>
+                        <span style={{ fontWeight: 600 }}>{item.pokemon}</span>
+                      </div>
+                      <p style={{ fontSize: '14px', lineHeight: '1.5', color: 'var(--slate-700)' }}>{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </section>
             </div>
           </article>
